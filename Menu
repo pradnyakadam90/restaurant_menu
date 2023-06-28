@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The optgroup element</h1>
+
+<p>The optgroup tag is used to group related options in a drop-down list:</p>
+
+<form action="/action_page.php" onsubmit="myFunction()">
+  <label for="Dish">Choose a dish:</label>
+  <select name="Dish" id="Dish">
+    <optgroup label="Veg">
+      <option value="paneer">paneer</option>
+      <option value="Daal">Daal fry</option>
+    </optgroup>
+    <optgroup label="Non veg">
+      <option value="chicken">chicken</option>
+      <option value="mutton">mutton</option>
+    </optgroup>
+  </select>
+  <br><br>
+  
+</form>
+
+<form action="/action_page.php" onsubmit="myFunction()">
+  <label for="Table">Choose a table:</label>
+  <select name="Table" id="Table">
+    <optgroup label="Table">
+      <option value="Table1">Table1</option>
+      <option value="Table2">Table2</option>
+    </optgroup>
+    
+  </select>
+  <br><br>
+  <input type="submit" value="Submit" >
+</form>
+
+<script>
+function myFunction() {
+  //alert("The Order was submitted");
+  alert("choosen dish :" +Dish.options[Dish.selectedIndex].text);
+  alert("choosen Table:" +Table.options[Table.selectedIndex].text);
+}
+
+function myFunction2() {
+  alert("The Table was choosen");
+}
+
+//create
+fetch('https://crudcrud.com/api/***/todos', {
+  headers: { "Content-Type": "application/json; charset=utf-8" },
+  method: 'POST',
+  body: JSON.stringify({
+    name: 'Dish',
+    value: Dish.options[Dish.selectedIndex].text
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+
+//read 
+  'https://crudcrud.com/api/***/todos/5d20d8cfe6280703e8ec06d9')
+.then(response => response.json())
+.then(data => console.log(data))
+
+
+fetch(
+'https://crudcrud.com/api/***/todos/5d20d8cfe6280703e8ec06d9', {
+  headers: { "Content-Type": "application/json; charset=utf-8" },
+  method: 'PUT',
+  body: JSON.stringify({
+    name: 'Dish',
+    value: Dish.options[Dish.selectedIndex].text,
+    note: 'Dish changed'
+  })
+})
+.then(response => console.log(response))
+
+
+//delete 
+fetch(
+'https://crudcrud.com/api/***/todos/5d20d8cfe6280703e8ec06d9', {
+  method: 'DELETE'
+})
+.then(response => console.log(response))
+
+
+
+
+
+
+</script>
+
+
+ 
+</body>
+</html>
